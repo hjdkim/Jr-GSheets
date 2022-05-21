@@ -54,6 +54,7 @@ limitations under the License.
     <div class="d-flex justify-content-center align-items-center">
       <pre id="content" style="white-space: pre-wrap" class="m-2 p-2"></pre>
     </div>
+    <div id="qrcode"></div>
     <script type="text/javascript">
       /* exported gapiLoaded */
       /* exported gisLoaded */
@@ -184,10 +185,12 @@ limitations under the License.
         const afiliado = range.values.find((element) => element[3] === dni);
         let activo;
         if (afiliado[4] == 1) {
-          activo = "ACTIVO";
+          activo = "https://jr-gsheet-practice.netlify.app/html/activo";
         } else {
-          activo = "INACTIVO";
+          activo = "https://jr-gsheet-practice.netlify.app/html/inactivo";
         }
+
+        new QRCode(document.getElementById("qrcode"), "https://webisora.com");
 
         document.getElementById("content").innerText =
           afiliado[1] + " " + afiliado[2] + "\nMiembro " + activo;
@@ -240,6 +243,7 @@ limitations under the License.
       integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
       crossorigin="anonymous"
     ></script>
+    <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
   </body>
 </html>
 <!-- [END sheets_quickstart] -->
