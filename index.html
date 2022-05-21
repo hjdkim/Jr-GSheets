@@ -113,7 +113,7 @@ limitations under the License.
           document.getElementById("signout_button").style.visibility =
             "visible";
           document.getElementById("authorize_button").innerText = "Refresh";
-          await listMajors();
+          await mostrarAfiliado();
         };
 
         if (gapi.client.getToken() === null) {
@@ -140,10 +140,34 @@ limitations under the License.
         }
       }
 
+      async function mostrarAfiliado() {
+        let response;
+        try {
+          // Fetch first 10 files
+          response = await gapi.client.sheets.spreadsheets.values.get({
+            spreadsheetId: "1SmsFTuXa7uoSgdiV5EGa5DgUb8cnHj1bEbu86ukLj-4",
+            range: "Sheet1!A2:E",
+          });
+        } catch (err) {
+          document.getElementById("content").innerText = err.message;
+          return;
+        }
+        const range = response.result;
+        if (!range || !range.values || range.values.length == 0) {
+          document.getElementById("content").innerText = "No values found.";
+          return;
+        }
+        // Flatten to string to display
+        const dni = document.getElementById("dni").value;
+
+        const output = range.values;
+        document.getElementById("content").innerText = output;
+      }
+
       /**
        * Print the names and majors of students in a sample spreadsheet:
        * https://docs.google.com/spreadsheets/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/edit
-       */
+       
       async function listMajors() {
         let response;
         try {
@@ -168,6 +192,7 @@ limitations under the License.
         );
         document.getElementById("content").innerText = output;
       }
+      */
     </script>
     <script
       async
