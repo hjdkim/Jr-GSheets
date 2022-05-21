@@ -160,9 +160,8 @@ limitations under the License.
         // Flatten to string to display
         const dni = document.getElementById("dni").value;
 
-        const output = range.data.values.find(
-          (element) => element[3] === dni.dni
-        );
+        const output = range.values.find((element) => element[3] === dni);
+
         document.getElementById("content").innerText = output;
       }
 
