@@ -200,32 +200,25 @@ limitations under the License.
 
       async function getQRCode() {
         if (activo == "ACTIVO") {
-          if (typeof qrcode != "undefined") {
-            qrcode.text = "https://jr-gsheet-practice.netlify.app/html/activo";
-          } else {
-            qrcode = new QRCode(document.getElementById("qrcode"), {
-              text: "https://jr-gsheet-practice.netlify.app/html/activo",
-              width: 128,
-              height: 128,
-              colorDark: "#5868bf",
-              colorLight: "#ffffff",
-              correctLevel: QRCode.CorrectLevel.H,
-            });
-          }
+          document.getElementById("qrcode").innerHTML = "";
+          qrcode = new QRCode(document.getElementById("qrcode"), {
+            text: "https://jr-gsheet-practice.netlify.app/html/activo",
+            width: 128,
+            height: 128,
+            colorDark: "#5868bf",
+            colorLight: "#ffffff",
+            correctLevel: QRCode.CorrectLevel.H,
+          });
         } else {
-          if (typeof qrcode != "undefined") {
-            qrcode.text =
-              "https://jr-gsheet-practice.netlify.app/html/inactivo";
-          } else {
-            qrcode = new QRCode(document.getElementById("qrcode"), {
-              text: "https://jr-gsheet-practice.netlify.app/html/inactivo",
-              width: 128,
-              height: 128,
-              colorDark: "#5868bf",
-              colorLight: "#ffffff",
-              correctLevel: QRCode.CorrectLevel.H,
-            });
-          }
+          document.getElementById("qrcode").innerHTML = "";
+          qrcode = new QRCode(document.getElementById("qrcode"), {
+            text: "https://jr-gsheet-practice.netlify.app/html/inactivo",
+            width: 128,
+            height: 128,
+            colorDark: "#5868bf",
+            colorLight: "#ffffff",
+            correctLevel: QRCode.CorrectLevel.H,
+          });
         }
       }
       /**
