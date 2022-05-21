@@ -29,32 +29,25 @@ limitations under the License.
   </head>
   <body>
     <!--Add buttons to initiate auth sequence and sign out-->
-    <div clas="d-flex justify-content-center align-items-center">
-      <form class="row justify-content-md-center m-2 p-2" id="formulario">
-        <div class="m-2 p-2 text-center row g-3">
-          <label for="dni" class="form-label">Ingrese su dni:</label>
-          <input
-            type="text"
-            id="dni"
-            name="dni"
-            class="form-control col-md-9"
-          />
-        </div>
-        <button
-          class="btn btn-primary m-2 p-2"
-          id="authorize_button"
-          onclick="handleAuthClick()"
-        >
-          Verificar
-        </button>
-        <button
-          id="signout_button"
-          onclick="handleSignoutClick()"
-          class="btn btn-secondary m-2 p-2"
-        >
-          Sign Out
-        </button>
-      </form>
+    <div class="d-flex justify-content-center align-items-center">
+      <div class="m-2 p-2 text-center row g-3">
+        <label for="dni" class="form-label">Ingrese su dni:</label>
+        <input type="text" id="dni" name="dni" class="form-control col-md-9" />
+      </div>
+      <button
+        class="btn btn-primary m-2 p-2"
+        id="authorize_button"
+        onclick="handleAuthClick()"
+      >
+        Verificar
+      </button>
+      <button
+        id="signout_button"
+        onclick="handleSignoutClick()"
+        class="btn btn-secondary m-2 p-2"
+      >
+        Sign Out
+      </button>
       <pre id="content" style="white-space: pre-wrap" class="m-2 p-2"></pre>
     </div>
 
@@ -195,8 +188,6 @@ limitations under the License.
 
         document.getElementById("content").innerText =
           afiliado[1] + " " + afiliado[2] + "\nMiembro " + activo;
-
-        alert(dni);
       }
 
       /**
