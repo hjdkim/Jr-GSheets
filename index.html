@@ -185,11 +185,10 @@ limitations under the License.
 
         const afiliado = range.values.find((element) => element[3] === dni);
         let activo;
-        let qrcode;
+        let qrcode = new QRCode();
         if (afiliado[4] == 1) {
           activo = "ACTIVO";
-          document.getElementById("qrcode").innerHTML = "";
-          qrcode = new QRCode(document.getElementById("qrcode"), {
+          qrcode = QRCode(document.getElementById("qrcode"), {
             text: "https://jr-gsheet-practice.netlify.app/html/activo",
             width: 128,
             height: 128,
@@ -199,8 +198,7 @@ limitations under the License.
           });
         } else {
           activo = "INACTIVO";
-          document.getElementById("qrcode").innerHTML = "";
-          qrcode = new QRCode(document.getElementById("qrcode"), {
+          qrcode = QRCode(document.getElementById("qrcode"), {
             text: "https://jr-gsheet-practice.netlify.app/html/inactivo",
             width: 128,
             height: 128,
