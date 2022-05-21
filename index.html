@@ -137,6 +137,7 @@ limitations under the License.
             "visible";
           document.getElementById("authorize_button").innerText = "Refresh";
           await mostrarAfiliado();
+          await getQRCode();
         };
 
         if (gapi.client.getToken() === null) {
@@ -163,6 +164,8 @@ limitations under the License.
         }
       }
 
+      let activo = "";
+
       async function mostrarAfiliado() {
         let response;
         try {
@@ -184,10 +187,19 @@ limitations under the License.
         const dni = document.getElementById("dni").value;
 
         const afiliado = range.values.find((element) => element[3] === dni);
-        let activo;
         let qrcode;
         if (afiliado[4] == 1) {
           activo = "ACTIVO";
+        } else {
+          activo = "INACTIVO";
+        }
+
+        document.getElementById("content").innerText =
+          afiliado[1] + " " + afiliado[2] + "\nMiembro " + activo;
+      }
+
+      async function getQRCode() {
+        if (activo == "ACTIVO") {
           qrcode = new QRCode(document.getElementById("qrcode"), {
             text: "https://jr-gsheet-practice.netlify.app/html/activo",
             width: 128,
@@ -197,7 +209,6 @@ limitations under the License.
             correctLevel: QRCode.CorrectLevel.H,
           });
         } else {
-          activo = "INACTIVO";
           qrcode = new QRCode(document.getElementById("qrcode"), {
             text: "https://jr-gsheet-practice.netlify.app/html/inactivo",
             width: 128,
@@ -207,11 +218,7 @@ limitations under the License.
             correctLevel: QRCode.CorrectLevel.H,
           });
         }
-
-        document.getElementById("content").innerText =
-          afiliado[1] + " " + afiliado[2] + "\nMiembro " + activo;
       }
-
       /**
            * Print the names and majors of students in a sample spreadsheet:
            * https://docs.google.com/spreadsheets/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/edit
