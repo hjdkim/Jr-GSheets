@@ -137,7 +137,6 @@ limitations under the License.
             "visible";
           document.getElementById("authorize_button").innerText = "Refresh";
           await mostrarAfiliado();
-          await getQRCode();
         };
 
         if (gapi.client.getToken() === null) {
@@ -187,6 +186,11 @@ limitations under the License.
         const dni = document.getElementById("dni").value;
 
         const afiliado = range.values.find((element) => element[3] === dni);
+        if ((afiliado = "undefined")) {
+          document.getElementById("content").innerText = "No es un afiliado.";
+          document.getElementById("qrcode").innerHTML = "";
+          return;
+        }
         let qrcode;
         if (afiliado[4] == 1) {
           activo = "ACTIVO";
@@ -196,6 +200,8 @@ limitations under the License.
 
         document.getElementById("content").innerText =
           afiliado[1] + " " + afiliado[2] + "\nMiembro " + activo;
+
+        await getQRCode();
       }
 
       async function getQRCode() {
@@ -205,7 +211,7 @@ limitations under the License.
             text: "https://jr-gsheet-practice.netlify.app/html/activo",
             width: 128,
             height: 128,
-            colorDark: "#5868bf",
+            colorDark: "#000000",
             colorLight: "#ffffff",
             correctLevel: QRCode.CorrectLevel.H,
           });
@@ -215,7 +221,7 @@ limitations under the License.
             text: "https://jr-gsheet-practice.netlify.app/html/inactivo",
             width: 128,
             height: 128,
-            colorDark: "#5868bf",
+            colorDark: "#000000",
             colorLight: "#ffffff",
             correctLevel: QRCode.CorrectLevel.H,
           });
