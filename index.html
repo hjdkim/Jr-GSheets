@@ -186,7 +186,7 @@ limitations under the License.
         const dni = document.getElementById("dni").value;
 
         const afiliado = range.values.find((element) => element[3] === dni);
-        if ((afiliado = "undefined")) {
+        if (!afiliado) {
           document.getElementById("content").innerText = "No es un afiliado.";
           document.getElementById("qrcode").innerHTML = "";
           return;
