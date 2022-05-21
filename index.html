@@ -160,9 +160,16 @@ limitations under the License.
         // Flatten to string to display
         const dni = document.getElementById("dni").value;
 
-        const output = range.values.find((element) => element[3] === dni);
+        const afiliado = range.values.find((element) => element[3] === dni);
+        let activo;
+        if (afiliado[4]) {
+          activo = "ACTIVO";
+        } else {
+          activo = "INACTIVO";
+        }
 
-        document.getElementById("content").innerText = dni;
+        document.getElementById("content").innerText =
+          afiliado[1] + " " + afiliado[2] + "es miembre " + activo;
       }
 
       /**
